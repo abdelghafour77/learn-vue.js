@@ -6,9 +6,9 @@ const app = Vue.createApp({
       show: true,
       age: 12,
       users: [
-        { name: "jack", age: 12 },
-        { name: "tom", age: 13 },
-        { name: "jerry", age: 14 }
+        { name: "jack", age: 12, isFav: true },
+        { name: "tom", age: 13, isFav: false },
+        { name: "jerry", age: 14, isFav: true }
       ]
     }
   },
@@ -19,7 +19,11 @@ const app = Vue.createApp({
     showToggles() {
       this.show = !this.show
     }
-
+  },
+  computed: {
+    filterUsers() {
+      return this.users.filter(user => user.age > 12)
+    }
   }
 })
 app.mount("#app")
